@@ -1,5 +1,6 @@
 # このレポジトリについて
-Synology製、タスクスケジューラー対応NASにWordPressのバックアップを行う為のレポジトリです。
+Synology製、タスクスケジューラー対応NASにWordPressのバックアップを行う為のレポジトリです。   
+データの転送にはrsyncを使用します。
 
 # 初期設定
 1. DSMの設定画面からホームディレクトリとSSH接続を有効にします。
@@ -16,7 +17,8 @@ Synology製、タスクスケジューラー対応NASにWordPressのバックア
 # スクリプトについて
 * slack_post.sh   
 (DSM、WordPressサーバ共通)   
-slackに通知する為のスクリプトです。
+slackに通知する為のスクリプトです。  
+コマンドライン変数で１つ目に名前、２つ目にメッセージを指定して実行します。
 * create_backup_data.sh  
 (WordPressサーバ用スクリプト)   
 データベースの内容とWordPressのコンテンツを圧縮し、バックアップファイルを作成します。
