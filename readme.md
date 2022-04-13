@@ -2,13 +2,25 @@
 Synology製、タスクスケジューラー対応NASにWordPressのバックアップを行う為のレポジトリです。   
 データの転送にはrsyncを使用します。
 
+# 開発・動作環境
+製品 : DS1621xs+   
+DSMバージョン : DSM 7.0.1-42218 Update 3   
+
 # 初期設定
-1. DSMの設定画面からホームディレクトリとSSH接続を有効にします。
+1. DSMの設定画面からホームディレクトリとSSH接続を有効にします。   
+* コントロールパネル　→　ユーザーとグループ　→　詳細　→　ユーサーホームサービスを有効にする
+![Home Directory](img/s1.png)    
+* コントロールパネル　→　端末とSNMP　→　端末　→　SSHサービスを有効化する
+![Home Directory](img/s2.png)    
 2. DSMにSSH接続を行い、鍵の生成を行います。
+```sh
+ssh-keygen
+```
 3. WordPressが駆動しているサーバにDSMの秘密鍵を配置し、DSMからパスワード無しでSSH接続できるようにします。
 4. nasディレクトリ内のスクリプトをDSM内に配置します。
 5. webディレクトリ内のスクリプトをWordPressサーバに配置します。
 6. SlackでWebhook URLを取得します。
+
 7. Slack通知用スクリプト`slack_post.sh`の変数`URL`に取得したWebhook URLを記述します。
 8. DSM用スクリプト`nas_wordpress_backup.sh`とWordPress用スクリプト`create_backup_data.sh`のパラメータを変更します。
 9. `create_backup_data.sh`を実行した後、`nas_wordpress_backup.sh`を実行し、NASにバックアップデータが転送される事を確認します。
